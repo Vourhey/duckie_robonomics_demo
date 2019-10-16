@@ -1,0 +1,3 @@
+Duckie Bot Robonomics Demo model
+
+In short it accepts a payment and moves the bot accordingly the amount of the payment
