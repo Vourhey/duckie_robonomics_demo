@@ -3,8 +3,6 @@
 
 # Standart, System and Third party
 from collections import namedtuple
-from queue import Queue
-from threading import Thread
 
 # ROS
 import rospy
@@ -16,11 +14,18 @@ from robonomics_liability.msg import Liability
 from robonomics_liability.srv import StartLiability, StartLiabilityRequest
 from robonomics_liability.srv import FinishLiability, FinishLiabilityRequest
 
+from duckie_robonomics_demo import robot
+
 
 class WorkerNode:
     def __init__(self):
         rospy.init_node('worker')
         rospy.loginfo('Launching worker node...')
+
+        LEFT_TRIM   = 0
+        RIGHT_TRIM  = 0
+
+        self.robot = robot.Robot(left_trim=LEFT_TRIM, right_trim=RIGHT_TRIM)
 
         rospy.Subscriber('/liability/ready', Liability, self.subscribe_and_start)
 
@@ -46,7 +51,7 @@ class WorkerNode:
 
         self.liability_proxy.start(liability.address)
 
-
+        self.robot.forward(150, liability.cost.uint256)
 
         self.liability_proxy.finish(liability.address, True)
         rospy.loginfo('Process complete.')
