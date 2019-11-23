@@ -1,6 +1,7 @@
 { stdenv
 , mkRosPackage
 , robonomics_comm
+, python3Packages
 }:
 
 mkRosPackage rec {
@@ -10,7 +11,7 @@ mkRosPackage rec {
 
   src = ./.;
 
-  propagatedBuildInputs = [ robonomics_comm ];
+  propagatedBuildInputs = [ robonomics_comm python3Packages.adafruit-motorhat];
 
   meta = with stdenv.lib; {
     description = "Duckie bot on Robonomics";
