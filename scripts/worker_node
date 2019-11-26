@@ -51,7 +51,7 @@ class WorkerNode:
 
         self.liability_proxy.start(liability.address)
 
-        self.robot.forward(150, liability.cost.uint256)
+        self.robot.forward(150, int(liability.cost.uint256))
 
         self.liability_proxy.finish(liability.address, True)
         rospy.loginfo('Process complete.')
