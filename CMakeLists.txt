@@ -19,8 +19,7 @@ catkin_install_python(
 
 install(
     FILES
-        launch/trader.launch
-        launch/worker.launch
+        launch/agent.launch
     DESTINATION
         ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
 )
